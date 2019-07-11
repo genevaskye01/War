@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+import random
+
+playerWins = 0
+opponentWins = 0
+playing = True
+stakes = 1
+gameOn = True
+round = True
+
+def War(p, o, s):
+    while p == o:
+        s += 1
+        p = random.randint(1, 14)
+        o = random.randint(1, 14)
+
+
+
+
+while gameOn:
+    while round:
+        player = random.randint(1, 14)
+        opponent = random.randint(1, 14)
+        print("Your card is " + str(player) + ".")
+        print("Your opponents card is " + str(opponent) + ".")
+        if player > opponent:
+            playerWins += stakes
+            print("You win this battle! The score is now:: " + str(playerWins) + " to " + str(opponentWins))
+            playing = False
+            stakes = 1
+        if player < opponent:
+            opponentWins += stakes
+            print("You lose this battle. The score is now:: " + str(playerWins) + " to " + str(opponentWins))
+            playing = False
+            stakes = 1
+        if player == opponent:
+            stakes += 1
+            print("War!!!!!!!!!!")
+            print("This round is now worth " + str(stakes) + " points")
+
+        answer = input("Press enter to continue")
+        if answer == "" \
+                 "":
+            round = True
+        else:
+            round = False
+        print()
+
+        if playerWins == 5 or playerWins > 5:
+            print("Congratulations, you won the war!")
+            round = False
+        if opponentWins == 5 or opponentWins > 5:
+            print("You lost the war...")
+            round = False
+
+    response = input("Would you like to risk more losses for another war? [Y/N]")
+    if response.lower() == "n":
+        gameOn = False
+    if response.lower() == "y":
+        round = True
+        playerWins = 0
+        opponentWins = 0
+        print()
